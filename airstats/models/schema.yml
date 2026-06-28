@@ -1,11 +1,13 @@
 models:
   - name: silver_airports
+    description: Its a cleaned airports data
     data_tests:
       - dbt_expectations.expect_table_columns_to_contain_set:
           arguments:
             column_list: ["airport_ident", "airport_type"]
     columns:
       - name: airport_ident
+        description: Its a unique identifier for airports
         data_tests:
           - unique
           - not_null
@@ -27,6 +29,7 @@ models:
                 max_value: 100
 
       - name: airport_type
+        description: '{{ doc("airports_types_docs") }}'
         data_tests:
           - accepted_values:
               arguments:
@@ -54,6 +57,7 @@ models:
                   ]
 
   - name: silver_airport_comments
+    description: Its a cleaned airport comments data
     columns:
       - name: comment_id
         data_tests:
@@ -61,6 +65,7 @@ models:
           - not_null
 
   - name: silver_runways
+    description: Its a cleaned runways data
     columns:
       - name: runway_id
         data_tests:
